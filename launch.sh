@@ -357,7 +357,7 @@ elif [ "$1" = "self" ]; then
 
   install_rocks
 
-}
+},
 
 
 if [ "$1" = "install" ]; then
