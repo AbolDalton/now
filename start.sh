@@ -334,64 +334,71 @@ elif [ "$1" = "self" ]; then
   while true; do
    rm -r ../.telegram-cli/state
    ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./system/self.lua -l 1 -E $@
-   sleep 3
-  done
-elif [ "$1" = "help" ]; then
-  echo ""
-  echo "You can use:"
-  sleep 0.5
-  echo ""
-  echo "$0 api"
-  echo "Api mod for your bot"
-  sleep 2
-  echo ""
-  echo "$0 self"
-  echo "Self mod for your account"
-  sleep 2
-  echo ""
-  echo "$0"
-  echo "Cli mod for your bot's account"
-  echo ""
-fi
-   echo -e "\033[38;5;208m"
-   echo -e "----------------------------------------------"
-   echo -e "     ___    ____ __    __ ___    _   _        "
-   echo -e "    / _ \  |  _ \\ \  / // _ \  | \  ||       "
-   echo -e "   / /_\ \ | |_| |\ \/ // /_\ \ ||\\_||       "
-   echo -e "  /_/   \_\|____/  \__//_/   \_\|| \__|       "
-   echo -e "                                              "
-   echo -e "----------------------------------------------"
-   echo -e "                   CLI MOD                    "
-   echo -e "         ----------------------------         "
-   echo -e "         CopyRight all right reserved         "
-   echo -e "----------------------------------------------"
-   echo -e "                                              \033[0;00m"
-   echo -e "\e[36m"
-   
-    cd system
-    if [ -e "bot.lua" ]; then
-     echo
-    elif [ -e "self.lua" ]; then
-	 rm self.lua 
-	 wget http://nahrup.ir/view/970/bot-4-1_286115.txt
-     mv bot-4-1_286115.txt bot.lua
-	elif [ -e "icli.lua" ]; then
-	 rm icli.lua 
-	 wget http://nahrup.ir/view/970/bot-4-1_286115.txt
-     mv bot-4-1_286115.txt bot.lua
-	fi
-	if [ -e "commands.lua" ]; then
-	 echo
-	elif [ -e "commands-self.lua" ]; then
-	 rm commands-self.lua
-	 wget http://www.folder98.ir/1395/07/1475545247.txt
-	 mv 1475545247.txt commands.lua
-	fi
-	cd ..
-   
+  cd tg
+
+  if [ $RET -ne 0 ]; then
+
+    autoconf -i
+
+  fi
+
+  ./configure && make
+
+
+  RET=$?; if [ $RET -ne 0 ]; then
+
+    echo "Error. Exiting."; exit $RET;
+
+  fi
+
+  cd ..
+
+  install_luarocks
+
+  install_rocks
+
+}
+
+
+if [ "$1" = "install" ]; then
+
+  install
+
+elif [ "$1" = "update" ]; then
+
+  update
+
+else
+
+  if [ ! -f ./tg/telegram.h ]; then
+
+    echo "tg not found"
+
+    echo "Run $0 install"
+
+    exit 1
+
+  fi
+
+
+  if [ ! -f ./tg/bin/telegram-cli ]; then
+
+    echo "tg binary not found"
+
+    echo "Run $0 install"
+
+    exit 1
+
+  fi
+
   while true; do
+
    rm -r ../.telegram-cli/state
-   ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./system/bot.lua -l 1 -E $@
+
+   ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/element.lua -l 1 -E $@
+
    sleep 3
+
   done
+
 fi
