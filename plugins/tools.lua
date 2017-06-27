@@ -1245,8 +1245,8 @@ end
 
 return {
   advan = {
-   "Created by: @janlou",
-   "Powered by: @AdvanTeam",
+   "Created by: @Abol_Myth_Dalton",
+   "Powered by: Dalad team",
    "CopyRight all right reserved",
   },
   patterns = {
@@ -1278,7 +1278,7 @@ return {
  "^[!/#]([Ss]etbye) (.*)$",
  "^[!/#]([Dd]elbye)$",
  "^[!/#][Rr][Aa][Tt][Ee]$",
- "^[!/#][Aa][Dd][Vv][Aa][Nn]$",
+ "^[!/#][Dd][Aa][Ll][Aa][Dd]$",
  "^[!/#](lock) (.*)$",
  "^[!/#](unlock) (.*)$",
  "/[Ss][Tt][Aa][Rr][Tt]",
