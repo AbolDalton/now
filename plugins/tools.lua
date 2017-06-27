@@ -1243,7 +1243,7 @@ Version: Test For Beta
 end
 
 return {
-  advan = {
+  dalad = {
    "Created by: @Abol_Myth_Dalton",
    "Powered by: Dalad team",
    "CopyRight all right reserved",
